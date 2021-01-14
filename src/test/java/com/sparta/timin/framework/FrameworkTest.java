@@ -1,44 +1,69 @@
 package com.sparta.timin.framework;
 
-import com.sparta.timin.framework.dtos.PersonDTO;
-import com.sparta.timin.framework.dtos.StarshipDTO;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
+import com.sparta.timin.framework.dtos.*;
+import org.junit.jupiter.api.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FrameworkTest {
-    PersonDTO personDTO;
+    static FilmDTO filmDTO;
+    static PersonDTO personDTO;
+    static PlanetDTO planetDTO;
+    static SpeciesDTO speciesDTO;
+    static StarshipDTO starshipDTO;
+    static VehicleDTO vehicleDTO;
+
+    @BeforeAll
+    @DisplayName("Setup")
+    static void setup() {
+        filmDTO = (FilmDTO) Injector.injectDTO("films/1/");
+        personDTO = (PersonDTO) Injector.injectDTO( "people/1/");
+        planetDTO = (PlanetDTO) Injector.injectDTO("planets/3/");
+        speciesDTO = (SpeciesDTO) Injector.injectDTO("species/3/");
+        starshipDTO = (StarshipDTO) Injector.injectDTO("starships/9/");
+        vehicleDTO = (VehicleDTO) Injector.injectDTO("vehicles/4/");
+    }
+
 
     @Test
     @DisplayName("Connection Test")
     void connectionTest() {
-        personDTO = Injector.injectPersonDTO(ConnectionManager.getURL());
-        Assertions.assertEquals(200, ConnectionManager.getStatusCode());
+        assertEquals(200, ConnectionManager.getStatusCode());
     }
 
     @Test
-    @DisplayName("get name")
+    @DisplayName("Person get name")
     void getName() {
-        personDTO = Injector.injectPersonDTO(ConnectionManager.getURL());
-        System.out.println(personDTO.getName());
+        assertEquals("Luke Skywalker", personDTO.getName());
     }
+
 
     @Test
     @DisplayName("Header test")
     void connectionType() {
-        personDTO = Injector.injectPersonDTO(ConnectionManager.getURL());
-        System.out.println(ConnectionManager.getHeaders());
+        System.out.println(ConnectionManager.getHeaders().allValues("content-type"));
         Assertions.assertNotNull(ConnectionManager.getHeaders());
     }
 
     @Test
-    @DisplayName("Get another DTO")
+    @DisplayName("Test all the DTOs")
     void getAnotherDTO() {
-        ConnectionManager.setEndPoint("starships/9/");
-        System.out.println(ConnectionManager.getURL());
-        StarshipDTO dto = (StarshipDTO) Injector.injectDTO(ConnectionManager.getEndPoint());
-        System.out.println(dto.getName());
-//        System.out.println(dto.getClass());
+        assertEquals("1977-05-25", filmDTO.getReleaseDate());
+        assertEquals("blue", personDTO.getEyeColor());
+        assertEquals("temperate, tropical", planetDTO.getClimate());
+
+        ArrayList<String> listOfPeople = new ArrayList<>();
+        listOfPeople.add("http://swapi.dev/api/people/13/");
+        listOfPeople.add("http://swapi.dev/api/people/80/");
+        assertEquals(listOfPeople, speciesDTO.getPeople());
+
+        HashMap additionalProperties = new HashMap();
+        assertEquals(additionalProperties.getClass(), starshipDTO.getAdditionalProperties().getClass());
+
+        assertEquals("wheeled", vehicleDTO.getVehicleClass());
     }
 
 

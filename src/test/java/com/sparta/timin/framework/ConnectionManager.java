@@ -6,11 +6,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
-import java.util.Map;
 
 public class ConnectionManager {
-
     private static final String BASEURL = "https://swapi.dev/api/";
     private static String endPoint = "people/1/";
     private String URL;
@@ -38,14 +35,13 @@ public class ConnectionManager {
         return BASEURL + endPoint;
     }
 
-    public static Map<String, List<String>> getHeaders() {
+    public static HttpHeaders getHeaders() {
         try {
             httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-        HttpHeaders headers = httpResponse.headers();
-        return headers.map();
+        return httpResponse.headers();
     }
 
     public static void setEndPoint(String endPoint) {
@@ -54,5 +50,9 @@ public class ConnectionManager {
 
     public static String getEndPoint() {
         return endPoint;
+    }
+
+    public static String getBASEURL() {
+        return BASEURL;
     }
 }

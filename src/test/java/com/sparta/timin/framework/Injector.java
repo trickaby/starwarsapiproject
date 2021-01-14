@@ -31,7 +31,7 @@ public class Injector{
         StarWarsDTO starWarsDTO = DTOFactory.dtoFactory(endPoint);
         ObjectMapper objectMapper = new ObjectMapper();
         HttpClient httpClient = HttpClient.newHttpClient();
-        HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(ConnectionManager.getURL())).build();
+        HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(ConnectionManager.getBASEURL() + endPoint)).build();
         try {
             HttpResponse<String> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
             starWarsDTO = objectMapper.readValue(httpResponse.body(), starWarsDTO.getClass());
