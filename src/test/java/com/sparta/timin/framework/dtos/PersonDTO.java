@@ -70,6 +70,17 @@ public class PersonDTO extends StarWarsDTO{
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+    public boolean isNameInCorrectFormat() {
+        if(!Character.isUpperCase(getName().charAt(0))) {return false;}
+        for(int i = 0; i < getName().length(); i++) {
+            if(getName().toCharArray()[i] == ' ' && !Character.isUpperCase(getName().toCharArray()[i+1])){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 
 
 

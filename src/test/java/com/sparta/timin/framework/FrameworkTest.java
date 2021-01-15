@@ -6,7 +6,7 @@ import org.junit.jupiter.api.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FrameworkTest {
     static FilmDTO filmDTO;
@@ -81,9 +81,16 @@ public class FrameworkTest {
     }
 
     @Test
-    @DisplayName("People is 82")
-    void checkNumberOfPeople() {
-        Counter.getCountAtRoot(82, "people");
+    @DisplayName("Name Format")
+    void nameFormat() {
+        assertTrue(personDTO.isNameInCorrectFormat());
+    }
+
+    @Test
+    @DisplayName("Incorrect Name")
+    void incorrectName() {
+        PersonDTO beruWhitesunlars = (PersonDTO) Injector.injectDTO("people/7/");
+        assertFalse(beruWhitesunlars.isNameInCorrectFormat());
     }
 
 
