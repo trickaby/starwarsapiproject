@@ -52,6 +52,7 @@ public class FrameworkTest {
     @DisplayName("Test all the DTOs")
     void getAnotherDTO() {
         assertEquals("1977-05-25", filmDTO.getReleaseDate());
+        System.out.println(filmDTO.getOpeningCrawl());
         assertEquals("blue", personDTO.getEyeColor());
         assertEquals("temperate, tropical", planetDTO.getClimate());
 

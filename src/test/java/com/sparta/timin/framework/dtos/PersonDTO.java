@@ -55,7 +55,7 @@ public class PersonDTO extends StarWarsDTO{
     @JsonProperty("films")
     private List<String> films = null;
     @JsonProperty("species")
-    private List<Object> species = null;
+    private List<String> species = null;
     @JsonProperty("vehicles")
     private List<String> vehicles = null;
     @JsonProperty("starships")
@@ -170,12 +170,12 @@ public class PersonDTO extends StarWarsDTO{
     }
 
     @JsonProperty("species")
-    public List<Object> getSpecies() {
+    public List<String> getSpecies() {
         return species;
     }
 
     @JsonProperty("species")
-    public void setSpecies(List<Object> species) {
+    public void setSpecies(List<String> species) {
         this.species = species;
     }
 

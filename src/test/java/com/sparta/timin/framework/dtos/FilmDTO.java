@@ -1,5 +1,6 @@
 package com.sparta.timin.framework.dtos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,6 +62,42 @@ public class FilmDTO extends StarWarsDTO{
     private String url;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+
+/*
+   check if e.g. getCharacters only contains links to people
+   category input is same as that which is returned by
+
+ */
+//    public boolean doListsReturnCorrectLinks(String category) {
+//        List<String> listToCheck = new ArrayList<>();
+//        String contentsToCheck;
+//        switch(category) {
+//            case "characters":
+//                listToCheck = characters;
+//                contentsToCheck = "people";
+//            case "planets":
+//                listToCheck = planets;
+//                contentsToCheck = "planets";
+//            case "starships":
+//                listToCheck = starships;
+//                contentsToCheck = "starships";
+//            case "species":
+//                listToCheck = species;
+//                contentsToCheck = "species";
+//            case "vehicles":
+//                listToCheck = vehicles;
+//                contentsToCheck = "vehicles";
+//        }
+//        for (String listContents : listToCheck) {
+//            if(listContents.contains())
+//        }
+//        return false;
+//    }
+
+
+
+
 
     @JsonProperty("title")
     public String getTitle() {
