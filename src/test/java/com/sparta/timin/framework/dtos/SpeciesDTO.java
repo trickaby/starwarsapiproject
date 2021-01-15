@@ -1,5 +1,6 @@
 package com.sparta.timin.framework.dtos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +65,32 @@ public class SpeciesDTO extends StarWarsDTO {
     private String url;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+
+    public boolean doSpeciesListsReturnCorrectLinks(String category) {
+        List<String> listToCheck = new ArrayList<>();
+        String contentsToCheck;
+        switch(category) {
+            case "people":
+                listToCheck = people;
+                contentsToCheck = "people";
+                break;
+            case "films":
+                listToCheck = films;
+                contentsToCheck = "planets";
+                break;
+            default:
+                return false;
+        }
+        if(listToCheck.isEmpty()) {return true;}
+        for (String listContents : listToCheck) {
+            if(!listContents.contains(contentsToCheck)) {return false;}
+        }
+        return true;
+    }
+
+
+
 
     @JsonProperty("average_height")
     public String getAverageHeight() {

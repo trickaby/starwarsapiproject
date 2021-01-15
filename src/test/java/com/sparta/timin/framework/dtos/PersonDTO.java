@@ -1,5 +1,6 @@
 package com.sparta.timin.framework.dtos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,6 +69,43 @@ public class PersonDTO extends StarWarsDTO{
     private String url;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+
+
+
+    public boolean doPersonListsReturnCorrectLinks(String category) {
+        List<String> listToCheck = new ArrayList<>();
+        String contentsToCheck;
+        switch(category) {
+            case "films":
+                listToCheck = films;
+                contentsToCheck = "people";
+                break;
+            case "starships":
+                listToCheck = starships;
+                contentsToCheck = "starships";
+                break;
+            case "species":
+                listToCheck = species;
+                contentsToCheck = "species";
+                break;
+            case "vehicles":
+                listToCheck = vehicles;
+                contentsToCheck = "vehicles";
+                break;
+            default:
+                return false;
+        }
+        if(listToCheck.isEmpty()) {return true;}
+        for (String listContents : listToCheck) {
+            if(!listContents.contains(contentsToCheck)) {return false;}
+        }
+        return true;
+    }
+
+
+
+
 
     @JsonProperty("name")
     public String getName() {

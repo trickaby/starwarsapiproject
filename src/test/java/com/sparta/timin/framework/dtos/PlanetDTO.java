@@ -1,5 +1,6 @@
 package com.sparta.timin.framework.dtos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,6 +62,27 @@ public class PlanetDTO extends StarWarsDTO{
     private String url;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+
+    public boolean doesPlanetsListsReturnCorrectLinks(String category) {
+        List<String> listToCheck = new ArrayList<>();
+        String contentsToCheck;
+        switch(category) {
+            case "films":
+                listToCheck = films;
+                contentsToCheck = "films";
+                break;
+            default:
+                return false;
+        }
+        if(listToCheck.isEmpty()) {return true;}
+        for (String listContents : listToCheck) {
+            if(!listContents.contains(contentsToCheck)) {return false;}
+        }
+        return true;
+    }
+
+
 
     @JsonProperty("name")
     public String getName() {

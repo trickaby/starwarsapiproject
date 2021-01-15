@@ -1,5 +1,6 @@
 package com.sparta.timin.framework.dtos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,7 +63,7 @@ public class StarshipDTO extends StarWarsDTO {
     @JsonProperty("starship_class")
     private String starshipClass;
     @JsonProperty("pilots")
-    private List<Object> pilots = null;
+    private List<String> pilots = null;
     @JsonProperty("films")
     private List<String> films = null;
     @JsonProperty("created")
@@ -73,6 +74,33 @@ public class StarshipDTO extends StarWarsDTO {
     private String url;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+
+    public boolean doStarshipsListsReturnCorrectLinks(String category) {
+        List<String> listToCheck = new ArrayList<>();
+        String contentsToCheck;
+        switch(category) {
+            case "pilots":
+                listToCheck = pilots;
+                contentsToCheck = "people";
+                break;
+            case "films":
+                listToCheck = films;
+                contentsToCheck = "planets";
+                break;
+            default:
+                return false;
+        }
+        if(listToCheck.isEmpty()) {return true;}
+        for (String listContents : listToCheck) {
+            if(!listContents.contains(contentsToCheck)) {return false;}
+        }
+        return true;
+    }
+
+
+
+
 
     @JsonProperty("name")
     public String getName() {
@@ -205,12 +233,12 @@ public class StarshipDTO extends StarWarsDTO {
     }
 
     @JsonProperty("pilots")
-    public List<Object> getPilots() {
+    public List<String> getPilots() {
         return pilots;
     }
 
     @JsonProperty("pilots")
-    public void setPilots(List<Object> pilots) {
+    public void setPilots(List<String> pilots) {
         this.pilots = pilots;
     }
 

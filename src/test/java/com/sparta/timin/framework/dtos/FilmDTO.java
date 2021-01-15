@@ -69,31 +69,39 @@ public class FilmDTO extends StarWarsDTO{
    category input is same as that which is returned by
 
  */
-//    public boolean doListsReturnCorrectLinks(String category) {
-//        List<String> listToCheck = new ArrayList<>();
-//        String contentsToCheck;
-//        switch(category) {
-//            case "characters":
-//                listToCheck = characters;
-//                contentsToCheck = "people";
-//            case "planets":
-//                listToCheck = planets;
-//                contentsToCheck = "planets";
-//            case "starships":
-//                listToCheck = starships;
-//                contentsToCheck = "starships";
-//            case "species":
-//                listToCheck = species;
-//                contentsToCheck = "species";
-//            case "vehicles":
-//                listToCheck = vehicles;
-//                contentsToCheck = "vehicles";
-//        }
-//        for (String listContents : listToCheck) {
-//            if(listContents.contains())
-//        }
-//        return false;
-//    }
+    public boolean doFilmListsReturnCorrectLinks(String category) {
+        List<String> listToCheck = new ArrayList<>();
+        String contentsToCheck;
+        switch(category) {
+            case "characters":
+                listToCheck = characters;
+                contentsToCheck = "people";
+                break;
+            case "planets":
+                listToCheck = planets;
+                contentsToCheck = "planets";
+                break;
+            case "starships":
+                listToCheck = starships;
+                contentsToCheck = "starships";
+                break;
+            case "species":
+                listToCheck = species;
+                contentsToCheck = "species";
+                break;
+            case "vehicles":
+                listToCheck = vehicles;
+                contentsToCheck = "vehicles";
+                break;
+            default:
+                return false;
+        }
+        if(listToCheck.isEmpty()) {return true;}
+        for (String listContents : listToCheck) {
+            if(!listContents.contains(contentsToCheck)) {return false;}
+        }
+        return true;
+    }
 
 
 

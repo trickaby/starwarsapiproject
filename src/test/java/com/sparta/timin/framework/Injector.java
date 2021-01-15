@@ -28,6 +28,7 @@ public class Injector{
     }
 
     public static StarWarsDTO injectDTO(String endPoint) {
+        ConnectionManager.setEndPoint(endPoint);
         StarWarsDTO starWarsDTO = DTOFactory.dtoFactory(endPoint);
         ObjectMapper objectMapper = new ObjectMapper();
         HttpClient httpClient = HttpClient.newHttpClient();

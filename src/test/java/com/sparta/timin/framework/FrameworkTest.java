@@ -67,6 +67,25 @@ public class FrameworkTest {
         assertEquals("wheeled", vehicleDTO.getVehicleClass());
     }
 
+    @Test
+    @DisplayName("Film check list contents")
+    void filmCheckListContents() {
+        Assertions.assertTrue(filmDTO.doFilmListsReturnCorrectLinks("vehicles"));
+    }
+
+    //Note: species list is empty
+    @Test
+    @DisplayName("Person check list contents")
+    void personCheckListContents() {
+        Assertions.assertTrue(personDTO.doPersonListsReturnCorrectLinks("species"));
+    }
+
+    @Test
+    @DisplayName("People is 82")
+    void checkNumberOfPeople() {
+        Counter.getCountAtRoot(82, "people");
+    }
+
 
 
 }
