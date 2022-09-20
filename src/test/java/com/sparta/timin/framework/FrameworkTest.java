@@ -99,7 +99,7 @@ public class FrameworkTest {
     @Test
     @DisplayName("Test Nested DTO Objects")
     void testNestedDtoObjects() {
-//        assertEquals("Alderaan",filmDTO.getPlanetDTO(1).getName());
+        assertEquals("Alderaan",filmDTO.getPlanetDTO(1).getName());
         assertEquals(filmDTO.getTitle(), filmDTO.getPlanetDTO(1).getFilmsDTO(0).getTitle());
     }
 
