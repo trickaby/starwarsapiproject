@@ -12,7 +12,7 @@ public class FrameworkTest {
     static FilmDTO filmDTO;
     static PersonDTO personDTO;
     static PlanetDTO planetDTO;
-    static SpeciesDTO speciesDTO;
+    static PlanetDTO speciesDTO;
     static StarshipDTO starshipDTO;
     static VehicleDTO vehicleDTO;
 
@@ -22,7 +22,7 @@ public class FrameworkTest {
         filmDTO = (FilmDTO) Injector.injectDTO("films/1/");
         personDTO = (PersonDTO) Injector.injectDTO( "people/1/");
         planetDTO = (PlanetDTO) Injector.injectDTO("planets/3/");
-        speciesDTO = (SpeciesDTO) Injector.injectDTO("species/3/");
+        speciesDTO = (PlanetDTO) Injector.injectDTO("species/3/");
         starshipDTO = (StarshipDTO) Injector.injectDTO("starships/9/");
         vehicleDTO = (VehicleDTO) Injector.injectDTO("vehicles/4/");
     }
@@ -57,8 +57,8 @@ public class FrameworkTest {
         assertEquals("temperate, tropical", planetDTO.getClimate());
 
         ArrayList<String> listOfPeople = new ArrayList<>();
-        listOfPeople.add("http://swapi.dev/api/people/13/");
-        listOfPeople.add("http://swapi.dev/api/people/80/");
+        listOfPeople.add("https://swapi.dev/api/people/13/");
+        listOfPeople.add("https://swapi.dev/api/people/80/");
         assertEquals(listOfPeople, speciesDTO.getPeople());
 
         HashMap additionalProperties = new HashMap();
@@ -77,7 +77,7 @@ public class FrameworkTest {
     @Test
     @DisplayName("Person check list contents")
     void personCheckListContents() {
-        Assertions.assertTrue(personDTO.doPersonListsReturnCorrectLinks("species"));
+        Assertions.assertTrue(personDTO.doFilmListsReturnCorrectLinks("species"));
     }
 
     @Test
@@ -91,6 +91,13 @@ public class FrameworkTest {
     void incorrectName() {
         PersonDTO beruWhitesunlars = (PersonDTO) Injector.injectDTO("people/7/");
         assertFalse(beruWhitesunlars.isNameInCorrectFormat());
+    }
+
+    @Test
+    @DisplayName("Test Nested DTO Objects")
+    void testNestedDtoObjects() {
+//        assertEquals("Alderaan",filmDTO.getPlanetDTO(1).getName());
+        assertEquals(filmDTO.getTitle(), filmDTO.getPlanetDTO(1).getFilmsDTO(0).getTitle());
     }
 
 

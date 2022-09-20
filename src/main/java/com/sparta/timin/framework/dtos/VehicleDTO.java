@@ -58,41 +58,13 @@ public class VehicleDTO extends StarWarsDTO {
     private String name;
     @JsonProperty("passengers")
     private String passengers;
-    @JsonProperty("pilots")
-    private List<String> pilots = null;
-    @JsonProperty("films")
-    private List<String> films = null;
+
     @JsonProperty("url")
     private String url;
     @JsonProperty("vehicle_class")
     private String vehicleClass;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-    public boolean doVehiclesListsReturnCorrectLinks(String category) {
-        List<String> listToCheck = new ArrayList<>();
-        String contentsToCheck;
-        switch(category) {
-            case "pilots":
-                listToCheck = pilots;
-                contentsToCheck = "people";
-                break;
-            case "films":
-                listToCheck = films;
-                contentsToCheck = "planets";
-                break;
-            default:
-                return false;
-        }
-        if(listToCheck.isEmpty()) {return true;}
-        for (String listContents : listToCheck) {
-            if(!listContents.contains(contentsToCheck)) {return false;}
-        }
-        return true;
-    }
-
-
-
 
 
     @JsonProperty("cargo_capacity")
@@ -213,26 +185,6 @@ public class VehicleDTO extends StarWarsDTO {
     @JsonProperty("passengers")
     public void setPassengers(String passengers) {
         this.passengers = passengers;
-    }
-
-    @JsonProperty("pilots")
-    public List<String> getPilots() {
-        return pilots;
-    }
-
-    @JsonProperty("pilots")
-    public void setPilots(List<String> pilots) {
-        this.pilots = pilots;
-    }
-
-    @JsonProperty("films")
-    public List<String> getFilms() {
-        return films;
-    }
-
-    @JsonProperty("films")
-    public void setFilms(List<String> films) {
-        this.films = films;
     }
 
     @JsonProperty("url")

@@ -1,8 +1,6 @@
 package com.sparta.timin.framework.dtos;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -10,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.sparta.timin.framework.Injector;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -49,16 +48,10 @@ public class SpeciesDTO extends StarWarsDTO {
     private String eyeColors;
     @JsonProperty("hair_colors")
     private String hairColors;
-    @JsonProperty("homeworld")
-    private String homeworld;
     @JsonProperty("language")
     private String language;
     @JsonProperty("name")
     private String name;
-    @JsonProperty("people")
-    private List<String> people = null;
-    @JsonProperty("films")
-    private List<String> films = null;
     @JsonProperty("skin_colors")
     private String skinColors;
     @JsonProperty("url")
@@ -66,32 +59,10 @@ public class SpeciesDTO extends StarWarsDTO {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-
-    public boolean doSpeciesListsReturnCorrectLinks(String category) {
-        List<String> listToCheck = new ArrayList<>();
-        String contentsToCheck;
-        switch(category) {
-            case "people":
-                listToCheck = people;
-                contentsToCheck = "people";
-                break;
-            case "films":
-                listToCheck = films;
-                contentsToCheck = "planets";
-                break;
-            default:
-                return false;
-        }
-        if(listToCheck.isEmpty()) {return true;}
-        for (String listContents : listToCheck) {
-            if(!listContents.contains(contentsToCheck)) {return false;}
-        }
-        return true;
+    public PlanetDTO getPlanetDTO() {
+        return (PlanetDTO) Injector.injectDTO(getHomeworld()
+                .substring(22));
     }
-
-
-
-
     @JsonProperty("average_height")
     public String getAverageHeight() {
         return averageHeight;
@@ -172,16 +143,6 @@ public class SpeciesDTO extends StarWarsDTO {
         this.hairColors = hairColors;
     }
 
-    @JsonProperty("homeworld")
-    public String getHomeworld() {
-        return homeworld;
-    }
-
-    @JsonProperty("homeworld")
-    public void setHomeworld(String homeworld) {
-        this.homeworld = homeworld;
-    }
-
     @JsonProperty("language")
     public String getLanguage() {
         return language;
@@ -200,26 +161,6 @@ public class SpeciesDTO extends StarWarsDTO {
     @JsonProperty("name")
     public void setName(String name) {
         this.name = name;
-    }
-
-    @JsonProperty("people")
-    public List<String> getPeople() {
-        return people;
-    }
-
-    @JsonProperty("people")
-    public void setPeople(List<String> people) {
-        this.people = people;
-    }
-
-    @JsonProperty("films")
-    public List<String> getFilms() {
-        return films;
-    }
-
-    @JsonProperty("films")
-    public void setFilms(List<String> films) {
-        this.films = films;
     }
 
     @JsonProperty("skin_colors")

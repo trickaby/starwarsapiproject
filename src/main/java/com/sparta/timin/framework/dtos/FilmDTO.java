@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.sparta.timin.framework.ConnectionManager;
+import com.sparta.timin.framework.Injector;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -44,16 +46,7 @@ public class FilmDTO extends StarWarsDTO{
     private String producer;
     @JsonProperty("release_date")
     private String releaseDate;
-    @JsonProperty("characters")
-    private List<String> characters = null;
-    @JsonProperty("planets")
-    private List<String> planets = null;
-    @JsonProperty("starships")
-    private List<String> starships = null;
-    @JsonProperty("vehicles")
-    private List<String> vehicles = null;
-    @JsonProperty("species")
-    private List<String> species = null;
+
     @JsonProperty("created")
     private String created;
     @JsonProperty("edited")
@@ -62,50 +55,6 @@ public class FilmDTO extends StarWarsDTO{
     private String url;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-
-/*
-   check if e.g. getCharacters only contains links to people
-   category input is same as that which is returned by
-
- */
-    public boolean doFilmListsReturnCorrectLinks(String category) {
-        List<String> listToCheck = new ArrayList<>();
-        String contentsToCheck;
-        switch(category) {
-            case "characters":
-                listToCheck = characters;
-                contentsToCheck = "people";
-                break;
-            case "planets":
-                listToCheck = planets;
-                contentsToCheck = "planets";
-                break;
-            case "starships":
-                listToCheck = starships;
-                contentsToCheck = "starships";
-                break;
-            case "species":
-                listToCheck = species;
-                contentsToCheck = "species";
-                break;
-            case "vehicles":
-                listToCheck = vehicles;
-                contentsToCheck = "vehicles";
-                break;
-            default:
-                return false;
-        }
-        if(listToCheck.isEmpty()) {return true;}
-        for (String listContents : listToCheck) {
-            if(!listContents.contains(contentsToCheck)) {return false;}
-        }
-        return true;
-    }
-
-
-
-
 
     @JsonProperty("title")
     public String getTitle() {
@@ -167,55 +116,6 @@ public class FilmDTO extends StarWarsDTO{
         this.releaseDate = releaseDate;
     }
 
-    @JsonProperty("characters")
-    public List<String> getCharacters() {
-        return characters;
-    }
-
-    @JsonProperty("characters")
-    public void setCharacters(List<String> characters) {
-        this.characters = characters;
-    }
-
-    @JsonProperty("planets")
-    public List<String> getPlanets() {
-        return planets;
-    }
-
-    @JsonProperty("planets")
-    public void setPlanets(List<String> planets) {
-        this.planets = planets;
-    }
-
-    @JsonProperty("starships")
-    public List<String> getStarships() {
-        return starships;
-    }
-
-    @JsonProperty("starships")
-    public void setStarships(List<String> starships) {
-        this.starships = starships;
-    }
-
-    @JsonProperty("vehicles")
-    public List<String> getVehicles() {
-        return vehicles;
-    }
-
-    @JsonProperty("vehicles")
-    public void setVehicles(List<String> vehicles) {
-        this.vehicles = vehicles;
-    }
-
-    @JsonProperty("species")
-    public List<String> getSpecies() {
-        return species;
-    }
-
-    @JsonProperty("species")
-    public void setSpecies(List<String> species) {
-        this.species = species;
-    }
 
     @JsonProperty("created")
     public String getCreated() {
@@ -249,12 +149,6 @@ public class FilmDTO extends StarWarsDTO{
 
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+        return additionalProperties;
     }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
 }

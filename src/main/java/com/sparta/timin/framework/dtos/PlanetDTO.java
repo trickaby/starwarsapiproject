@@ -1,8 +1,6 @@
 package com.sparta.timin.framework.dtos;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -50,10 +48,6 @@ public class PlanetDTO extends StarWarsDTO{
     private String surfaceWater;
     @JsonProperty("population")
     private String population;
-    @JsonProperty("residents")
-    private List<Object> residents = null;
-    @JsonProperty("films")
-    private List<String> films = null;
     @JsonProperty("created")
     private String created;
     @JsonProperty("edited")
@@ -62,27 +56,6 @@ public class PlanetDTO extends StarWarsDTO{
     private String url;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-
-    public boolean doesPlanetsListsReturnCorrectLinks(String category) {
-        List<String> listToCheck = new ArrayList<>();
-        String contentsToCheck;
-        switch(category) {
-            case "films":
-                listToCheck = films;
-                contentsToCheck = "films";
-                break;
-            default:
-                return false;
-        }
-        if(listToCheck.isEmpty()) {return true;}
-        for (String listContents : listToCheck) {
-            if(!listContents.contains(contentsToCheck)) {return false;}
-        }
-        return true;
-    }
-
-
 
     @JsonProperty("name")
     public String getName() {
@@ -172,26 +145,6 @@ public class PlanetDTO extends StarWarsDTO{
     @JsonProperty("population")
     public void setPopulation(String population) {
         this.population = population;
-    }
-
-    @JsonProperty("residents")
-    public List<Object> getResidents() {
-        return residents;
-    }
-
-    @JsonProperty("residents")
-    public void setResidents(List<Object> residents) {
-        this.residents = residents;
-    }
-
-    @JsonProperty("films")
-    public List<String> getFilms() {
-        return films;
-    }
-
-    @JsonProperty("films")
-    public void setFilms(List<String> films) {
-        this.films = films;
     }
 
     @JsonProperty("created")
