@@ -1,7 +1,6 @@
 package com.sparta.timin.framework.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sparta.timin.framework.ConnectionManager;
 import com.sparta.timin.framework.Injector;
 
 import java.util.ArrayList;
