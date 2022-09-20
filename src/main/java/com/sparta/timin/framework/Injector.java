@@ -2,7 +2,7 @@ package com.sparta.timin.framework;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sparta.timin.framework.dtos.*;
+import com.sparta.timin.framework.dtos.StarWarsDTO;
 
 import java.io.IOException;
 

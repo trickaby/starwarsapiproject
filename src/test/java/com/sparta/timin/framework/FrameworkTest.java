@@ -1,7 +1,10 @@
 package com.sparta.timin.framework;
 
 import com.sparta.timin.framework.dtos.*;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +15,7 @@ public class FrameworkTest {
     static FilmDTO filmDTO;
     static PersonDTO personDTO;
     static PlanetDTO planetDTO;
-    static PlanetDTO speciesDTO;
+    static SpeciesDTO speciesDTO;
     static StarshipDTO starshipDTO;
     static VehicleDTO vehicleDTO;
 
@@ -22,7 +25,7 @@ public class FrameworkTest {
         filmDTO = (FilmDTO) Injector.injectDTO("films/1/");
         personDTO = (PersonDTO) Injector.injectDTO( "people/1/");
         planetDTO = (PlanetDTO) Injector.injectDTO("planets/3/");
-        speciesDTO = (PlanetDTO) Injector.injectDTO("species/3/");
+        speciesDTO = (SpeciesDTO) Injector.injectDTO("species/3/");
         starshipDTO = (StarshipDTO) Injector.injectDTO("starships/9/");
         vehicleDTO = (VehicleDTO) Injector.injectDTO("vehicles/4/");
     }

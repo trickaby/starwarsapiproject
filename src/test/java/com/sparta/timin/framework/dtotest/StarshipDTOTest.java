@@ -1,7 +1,6 @@
 package com.sparta.timin.framework.dtotest;
 
 import com.sparta.timin.framework.Injector;
-import com.sparta.timin.framework.dtos.SpeciesDTO;
 import com.sparta.timin.framework.dtos.StarshipDTO;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
