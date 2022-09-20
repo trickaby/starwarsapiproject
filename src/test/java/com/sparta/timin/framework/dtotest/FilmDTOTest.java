@@ -59,6 +59,11 @@ public class FilmDTOTest {
         assertEquals("Luke Skywalker", filmDTO.getPlanetDTO(0).getName());
     }
 
+    @Test
+    void filmDtoSpecies() {
+        assertEquals("Human", filmDTO.getSpeciesDTO(0).getName());
+    }
+
 
 
 }

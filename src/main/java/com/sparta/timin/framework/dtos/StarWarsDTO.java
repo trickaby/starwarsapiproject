@@ -1,6 +1,7 @@
 package com.sparta.timin.framework.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sparta.timin.framework.ConnectionManager;
 import com.sparta.timin.framework.Injector;
 
 import java.util.ArrayList;
@@ -20,52 +21,66 @@ public abstract class StarWarsDTO {
     private List<String> species = null;
     @JsonProperty("films")
     private List<String> films = null;
-
     @JsonProperty("pilots")
     private List<String> pilots = null;
-
     @JsonProperty("residents")
     private List<String> residents = null;
-
-    public String getHomeworld() {
-        return homeworld;
-    }
-
-    public void setHomeworld(String homeworld) {
-        this.homeworld = homeworld;
-    }
-
     @JsonProperty("homeworld")
     private String homeworld;
-
-    public List<String> getResidents() {
-        return residents;
-    }
-
-    public void setResidents(List<String> residents) {
-        this.residents = residents;
-    }
-
-    public PersonDTO getResidentsDTO(int index) {
-        return (PersonDTO) Injector.injectDTO(getResidents().get(index)
-                .substring(22));
-    }
-
     @JsonProperty("people")
     private List<String> people = null;
 
-    public List<String> getPeople() {
-        return people;
-    }
+    public PersonDTO getResidentsDTO(int index) {
+        return (PersonDTO) Injector.injectDTO(getResidents().get(index)
+                .substring(ConnectionManager.getBASEURL().length()));
 
-    public void setPeople(List<String> people) {
-        this.people = people;
     }
 
     public PersonDTO getPeopleDTO(int index) {
         return (PersonDTO) Injector.injectDTO(getPeople().get(index)
-                .substring(22));
+                .substring(ConnectionManager.getBASEURL().length()));
     }
+
+    public PersonDTO getCharacterDTO(int index) {
+        return (PersonDTO) Injector.injectDTO(getCharacters().get(index)
+                .substring(ConnectionManager.getBASEURL().length()));
+    }
+
+    public PersonDTO getPilotDTO(int index) {
+        return (PersonDTO) Injector.injectDTO(getPilots().get(index)
+                .substring(ConnectionManager.getBASEURL().length()));
+    }
+
+    public VehicleDTO getVehicleDTO(int index) {
+        return (VehicleDTO) Injector.injectDTO(getVehicles().get(index)
+                .substring(ConnectionManager.getBASEURL().length()));
+    }
+
+    public StarshipDTO getStarshipDTO(int index) {
+        return (StarshipDTO) Injector.injectDTO(getStarships().get(index)
+                .substring(ConnectionManager.getBASEURL().length()));
+    }
+
+    public PlanetDTO getPlanetDTO(int index) {
+        return (PlanetDTO) Injector.injectDTO(getPlanets().get(index)
+                .substring(ConnectionManager.getBASEURL().length()));
+    }
+
+    public FilmDTO getFilmsDTO(int index) {
+        return (FilmDTO) Injector.injectDTO(getFilms().get(index)
+                .substring(ConnectionManager.getBASEURL().length()));
+    }
+
+    public SpeciesDTO getSpeciesDTO(int index) {
+        return (SpeciesDTO) Injector.injectDTO(getSpecies().get(index)
+                .substring(ConnectionManager.getBASEURL().length()));
+    }
+
+    public PlanetDTO getHomeworldDTO() {
+        return (PlanetDTO) Injector.injectDTO(getHomeworld()
+                .substring(ConnectionManager.getBASEURL().length()));
+    }
+
 
     public List<String> getFilms() {
         return films;
@@ -78,47 +93,6 @@ public abstract class StarWarsDTO {
     public List<String> getCharacters() {
         return characters;
     }
-
-    public PersonDTO getCharacterDTO(int index) {
-        return (PersonDTO) Injector.injectDTO(getCharacters().get(index)
-                .substring(22));
-    }
-
-    public PersonDTO getPilotDTO(int index) {
-        return (PersonDTO) Injector.injectDTO(getPilots().get(index)
-                .substring(22));
-    }
-
-    public VehicleDTO getVehicleDTO(int index) {
-        return (VehicleDTO) Injector.injectDTO(getVehicles().get(index)
-                .substring(22));
-    }
-
-    public StarshipDTO getStarshipDTO(int index) {
-        return (StarshipDTO) Injector.injectDTO(getStarships().get(index)
-                .substring(22));
-    }
-
-    public PlanetDTO getPlanetDTO(int index) {
-        return (PlanetDTO) Injector.injectDTO(getPlanets().get(index)
-                .substring(22));
-    }
-
-    public FilmDTO getFilmsDTO(int index) {
-        return (FilmDTO) Injector.injectDTO(getFilms().get(index)
-                .substring(22));
-    }
-
-    public SpeciesDTO getSpeciesDTO(int index) {
-        return (SpeciesDTO) Injector.injectDTO(getSpecies().get(index)
-                .substring(22));
-    }
-
-    public PlanetDTO getHomeworldDTO() {
-        return (PlanetDTO) Injector.injectDTO(getHomeworld()
-                .substring(22));
-    }
-
 
     public void setCharacters(List<String> characters) {
         this.characters = characters;
@@ -164,6 +138,30 @@ public abstract class StarWarsDTO {
         this.species = species;
     }
 
+    public String getHomeworld() {
+        return homeworld;
+    }
+
+    public void setHomeworld(String homeworld) {
+        this.homeworld = homeworld;
+    }
+
+    public List<String> getResidents() {
+        return residents;
+    }
+
+    public void setResidents(List<String> residents) {
+        this.residents = residents;
+    }
+
+
+    public List<String> getPeople() {
+        return people;
+    }
+
+    public void setPeople(List<String> people) {
+        this.people = people;
+    }
 
 /*
    check if e.g. getCharacters only contains links to people
@@ -219,5 +217,4 @@ public abstract class StarWarsDTO {
             }
         return true;
     }
-
 }

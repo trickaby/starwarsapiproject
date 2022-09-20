@@ -56,12 +56,6 @@ public class PersonDTO extends StarWarsDTO{
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-        public PlanetDTO getPlanetDTO() {
-        return (PlanetDTO) Injector.injectDTO(getHomeworld()
-                .substring(22));
-    }
-
-
     public boolean isNameInCorrectFormat() {
         if(!Character.isUpperCase(getName().charAt(0))) {return false;}
         for(int i = 0; i < getName().length(); i++) {
