@@ -63,9 +63,7 @@ public class FrameworkTest {
         listOfPeople.add("https://swapi.dev/api/people/13/");
         listOfPeople.add("https://swapi.dev/api/people/80/");
         assertEquals(listOfPeople, speciesDTO.getPeople());
-
-        HashMap additionalProperties = new HashMap();
-        assertEquals(additionalProperties.getClass(), starshipDTO.getAdditionalProperties().getClass());
+        assertEquals(HashMap.class, starshipDTO.getAdditionalProperties().getClass());
 
         assertEquals("wheeled", vehicleDTO.getVehicleClass());
     }
