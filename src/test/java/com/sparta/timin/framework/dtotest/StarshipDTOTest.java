@@ -1,5 +1,6 @@
 package com.sparta.timin.framework.dtotest;
 
+import com.sparta.timin.framework.Endpoints;
 import com.sparta.timin.framework.Injector;
 import com.sparta.timin.framework.dtos.StarshipDTO;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,7 +16,7 @@ public class StarshipDTOTest {
     @BeforeAll
     @DisplayName("Setup")
     static void setup() {
-        starshipDTO = (StarshipDTO) Injector.injectDTO("starships/9/");
+        starshipDTO = (StarshipDTO) Injector.injectDTO(Endpoints.STARSHIP, 9);
 
     }
 

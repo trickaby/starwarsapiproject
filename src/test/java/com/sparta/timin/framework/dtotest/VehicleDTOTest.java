@@ -1,5 +1,6 @@
 package com.sparta.timin.framework.dtotest;
 
+import com.sparta.timin.framework.Endpoints;
 import com.sparta.timin.framework.Injector;
 import com.sparta.timin.framework.dtos.VehicleDTO;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,7 +16,7 @@ public class VehicleDTOTest {
     @BeforeAll
     @DisplayName("Setup")
     static void setup() {
-        vehicleDTO = (VehicleDTO) Injector.injectDTO("vehicles/4/");
+        vehicleDTO = (VehicleDTO) Injector.injectDTO(Endpoints.VEHICLE, 4);
 
     }
 

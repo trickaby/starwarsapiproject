@@ -1,5 +1,6 @@
 package com.sparta.timin.framework.dtotest;
 
+import com.sparta.timin.framework.Endpoints;
 import com.sparta.timin.framework.Injector;
 import com.sparta.timin.framework.dtos.SpeciesDTO;
 import org.junit.jupiter.api.BeforeAll;
@@ -14,7 +15,7 @@ public class SpeciesDTOTest {
     @BeforeAll
     @DisplayName("Setup")
     static void setup() {
-        speciesDTO = (SpeciesDTO) Injector.injectDTO("species/1/");
+        speciesDTO = (SpeciesDTO) Injector.injectDTO(Endpoints.SPECIES,1);
 
     }
 

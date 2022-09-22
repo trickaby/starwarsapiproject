@@ -22,12 +22,12 @@ public class FrameworkTest {
     @BeforeAll
     @DisplayName("Setup")
     static void setup() {
-        filmDTO = (FilmDTO) Injector.injectDTO("films/1/");
-        personDTO = (PersonDTO) Injector.injectDTO( "people/1/");
-        planetDTO = (PlanetDTO) Injector.injectDTO("planets/3/");
-        speciesDTO = (SpeciesDTO) Injector.injectDTO("species/3/");
-        starshipDTO = (StarshipDTO) Injector.injectDTO("starships/9/");
-        vehicleDTO = (VehicleDTO) Injector.injectDTO("vehicles/4/");
+        filmDTO = (FilmDTO) Injector.injectDTO(Endpoints.FILM, 1);
+        personDTO = (PersonDTO) Injector.injectDTO( Endpoints.PERSON, 1);
+        planetDTO = (PlanetDTO) Injector.injectDTO(Endpoints.PLANET, 3);
+        speciesDTO = (SpeciesDTO) Injector.injectDTO(Endpoints.SPECIES,3);
+        starshipDTO = (StarshipDTO) Injector.injectDTO(Endpoints.STARSHIP,9);
+        vehicleDTO = (VehicleDTO) Injector.injectDTO(Endpoints.VEHICLE, 4);
     }
 
 
@@ -90,7 +90,7 @@ public class FrameworkTest {
     @Test
     @DisplayName("Incorrect Name")
     void incorrectName() {
-        PersonDTO beruWhitesunlars = (PersonDTO) Injector.injectDTO("people/7/");
+        PersonDTO beruWhitesunlars = (PersonDTO) Injector.injectDTO(Endpoints.PERSON, 7);
         assertFalse(beruWhitesunlars.isNameInCorrectFormat());
     }
 
