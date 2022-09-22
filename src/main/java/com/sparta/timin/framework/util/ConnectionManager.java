@@ -1,5 +1,6 @@
-package com.sparta.timin.framework;
+package com.sparta.timin.framework.util;
 
+import com.google.gson.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -20,12 +21,13 @@ public class ConnectionManager {
 
     public static void buildHttpRequest() {
         setHttpRequest(HttpRequest.newBuilder().uri(URI.create(ConnectionManager.getURL())).build());
-        System.out.println("Request: " + getHttpRequest().toString());
+        System.out.println("Request: " + getHttpRequest().toString() + " " + getStatusCode());
     }
 
     public static void sendRequest() throws IOException, InterruptedException {
         setHttpResponse(ConnectionManager.getHttpClient().send(httpRequest, HttpResponse.BodyHandlers.ofString()));
-        System.out.println("Response: " + getHttpResponse().body());
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        System.out.println("Response: " + gson.toJson(JsonParser.parseString(httpResponse.body())));
     }
 
     public static void setURL(String URL) {

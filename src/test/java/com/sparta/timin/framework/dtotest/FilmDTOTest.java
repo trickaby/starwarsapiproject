@@ -1,6 +1,7 @@
 package com.sparta.timin.framework.dtotest;
 
-import com.sparta.timin.framework.Injector;
+import com.sparta.timin.framework.util.Endpoints;
+import com.sparta.timin.framework.util.Injector;
 import com.sparta.timin.framework.dtos.FilmDTO;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +17,7 @@ public class FilmDTOTest {
     @BeforeAll
     @DisplayName("Setup")
     static void setup() {
-        filmDTO = (FilmDTO) Injector.injectDTO("films/1/");
+        filmDTO = (FilmDTO) Injector.injectDTO(Endpoints.FILM, 1);
 
     }
 
