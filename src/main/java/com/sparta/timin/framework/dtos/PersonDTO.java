@@ -1,15 +1,10 @@
 package com.sparta.timin.framework.dtos;
 
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.*;
+import com.sparta.timin.framework.Injector;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -51,16 +46,7 @@ public class PersonDTO extends StarWarsDTO{
     private String birthYear;
     @JsonProperty("gender")
     private String gender;
-    @JsonProperty("homeworld")
-    private String homeworld;
-    @JsonProperty("films")
-    private List<String> films = null;
-    @JsonProperty("species")
-    private List<String> species = null;
-    @JsonProperty("vehicles")
-    private List<String> vehicles = null;
-    @JsonProperty("starships")
-    private List<String> starships = null;
+
     @JsonProperty("created")
     private String created;
     @JsonProperty("edited")
@@ -79,44 +65,6 @@ public class PersonDTO extends StarWarsDTO{
         }
         return true;
     }
-
-
-
-
-
-    public boolean doPersonListsReturnCorrectLinks(String category) {
-        List<String> listToCheck = new ArrayList<>();
-        String contentsToCheck;
-        switch(category) {
-            case "films":
-                listToCheck = films;
-                contentsToCheck = "people";
-                break;
-            case "starships":
-                listToCheck = starships;
-                contentsToCheck = "starships";
-                break;
-            case "species":
-                listToCheck = species;
-                contentsToCheck = "species";
-                break;
-            case "vehicles":
-                listToCheck = vehicles;
-                contentsToCheck = "vehicles";
-                break;
-            default:
-                return false;
-        }
-        if(listToCheck.isEmpty()) {return true;}
-        for (String listContents : listToCheck) {
-            if(!listContents.contains(contentsToCheck)) {return false;}
-        }
-        return true;
-    }
-
-
-
-
 
     @JsonProperty("name")
     public String getName() {
@@ -198,55 +146,7 @@ public class PersonDTO extends StarWarsDTO{
         this.gender = gender;
     }
 
-    @JsonProperty("homeworld")
-    public String getHomeworld() {
-        return homeworld;
-    }
 
-    @JsonProperty("homeworld")
-    public void setHomeworld(String homeworld) {
-        this.homeworld = homeworld;
-    }
-
-    @JsonProperty("films")
-    public List<String> getFilms() {
-        return films;
-    }
-
-    @JsonProperty("films")
-    public void setFilms(List<String> films) {
-        this.films = films;
-    }
-
-    @JsonProperty("species")
-    public List<String> getSpecies() {
-        return species;
-    }
-
-    @JsonProperty("species")
-    public void setSpecies(List<String> species) {
-        this.species = species;
-    }
-
-    @JsonProperty("vehicles")
-    public List<String> getVehicles() {
-        return vehicles;
-    }
-
-    @JsonProperty("vehicles")
-    public void setVehicles(List<String> vehicles) {
-        this.vehicles = vehicles;
-    }
-
-    @JsonProperty("starships")
-    public List<String> getStarships() {
-        return starships;
-    }
-
-    @JsonProperty("starships")
-    public void setStarships(List<String> starships) {
-        this.starships = starships;
-    }
 
     @JsonProperty("created")
     public String getCreated() {

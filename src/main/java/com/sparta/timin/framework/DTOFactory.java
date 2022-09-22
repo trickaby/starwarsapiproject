@@ -4,7 +4,7 @@ import com.sparta.timin.framework.dtos.*;
 
 public class DTOFactory {
 
-    public static StarWarsDTO dtoFactory(String endPoint) {
+    public static StarWarsDTO setDTOObject(String endPoint) {
         int slash = endPoint.indexOf('/');
         String input = endPoint.substring(0, slash);
 

@@ -1,7 +1,10 @@
 package com.sparta.timin.framework;
 
 import com.sparta.timin.framework.dtos.*;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,12 +60,10 @@ public class FrameworkTest {
         assertEquals("temperate, tropical", planetDTO.getClimate());
 
         ArrayList<String> listOfPeople = new ArrayList<>();
-        listOfPeople.add("http://swapi.dev/api/people/13/");
-        listOfPeople.add("http://swapi.dev/api/people/80/");
+        listOfPeople.add("https://swapi.dev/api/people/13/");
+        listOfPeople.add("https://swapi.dev/api/people/80/");
         assertEquals(listOfPeople, speciesDTO.getPeople());
-
-        HashMap additionalProperties = new HashMap();
-        assertEquals(additionalProperties.getClass(), starshipDTO.getAdditionalProperties().getClass());
+        assertEquals(HashMap.class, starshipDTO.getAdditionalProperties().getClass());
 
         assertEquals("wheeled", vehicleDTO.getVehicleClass());
     }
@@ -77,7 +78,7 @@ public class FrameworkTest {
     @Test
     @DisplayName("Person check list contents")
     void personCheckListContents() {
-        Assertions.assertTrue(personDTO.doPersonListsReturnCorrectLinks("species"));
+        Assertions.assertTrue(personDTO.doFilmListsReturnCorrectLinks("species"));
     }
 
     @Test
@@ -91,6 +92,13 @@ public class FrameworkTest {
     void incorrectName() {
         PersonDTO beruWhitesunlars = (PersonDTO) Injector.injectDTO("people/7/");
         assertFalse(beruWhitesunlars.isNameInCorrectFormat());
+    }
+
+    @Test
+    @DisplayName("Test Nested DTO Objects")
+    void testNestedDtoObjects() {
+        assertEquals("Alderaan",filmDTO.getPlanetDTO(1).getName());
+        assertEquals(filmDTO.getTitle(), filmDTO.getPlanetDTO(1).getFilmsDTO(0).getTitle());
     }
 
 

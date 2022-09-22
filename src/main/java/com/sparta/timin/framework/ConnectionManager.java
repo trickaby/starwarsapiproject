@@ -9,15 +9,57 @@ import java.net.http.HttpResponse;
 
 public class ConnectionManager {
     private static final String BASEURL = "https://swapi.dev/api/";
-    private static String endPoint = "people/1/";
-    private String URL;
+    private static String endPoint;
+
+    private static String URL;
+
     private static HttpResponse<String> httpResponse = null;
     private static HttpClient httpClient = HttpClient.newHttpClient();
-    private static HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(BASEURL + endPoint)).build();
+
+    private static HttpRequest httpRequest;
+
+    public static void buildHttpRequest() {
+        setHttpRequest(HttpRequest.newBuilder().uri(URI.create(ConnectionManager.getURL())).build());
+        System.out.println("Request: " + getHttpRequest().toString());
+    }
+
+    public static void sendRequest() throws IOException, InterruptedException {
+        setHttpResponse(ConnectionManager.getHttpClient().send(httpRequest, HttpResponse.BodyHandlers.ofString()));
+        System.out.println("Response: " + getHttpResponse().body());
+    }
+
+    public static void setURL(String URL) {
+        ConnectionManager.URL = URL;
+    }
+
+
+    public static HttpResponse<String> getHttpResponse() {
+        return httpResponse;
+    }
+
+    public static void setHttpResponse(HttpResponse<String> httpResponse) {
+        ConnectionManager.httpResponse = httpResponse;
+    }
 
 
     public static String getConnection() {
         return BASEURL;
+    }
+
+    public static HttpClient getHttpClient() {
+        return httpClient;
+    }
+
+    public static void setHttpClient(HttpClient httpClient) {
+        ConnectionManager.httpClient = httpClient;
+    }
+
+    public static HttpRequest getHttpRequest() {
+        return httpRequest;
+    }
+
+    public static void setHttpRequest(HttpRequest httpRequest) {
+        ConnectionManager.httpRequest = httpRequest;
     }
 
     public static int getStatusCode() {
