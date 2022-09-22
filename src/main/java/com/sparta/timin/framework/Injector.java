@@ -37,9 +37,8 @@ public class Injector{
 
     private static StarWarsDTO buildStarWarsDTO() {
         ObjectMapper objectMapper = new ObjectMapper();
-        StarWarsDTO starWarsDTO = DTOFactory.setDTOObject();
         try {
-            return objectMapper.readValue(ConnectionManager.getHttpResponse().body(), starWarsDTO.getClass());
+            return objectMapper.readValue(ConnectionManager.getHttpResponse().body(), DTOFactory.setDTOObject().getClass());
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -51,22 +50,14 @@ public class Injector{
         return buildStarWarsListDTO();
     }
 
-    public static StarWarsListDTO injectStarWarsListDTO(String endPoint) {
-        ConnectionManager.setEndPoint(endPoint);
+    public static StarWarsListDTO injectStarWarsListDTO(Endpoints endPoint) {
+        ConnectionManager.setEndPoint(endPoint.getEndpoint());
         executeRequest();
         return buildStarWarsListDTO();
     }
 
     private static StarWarsListDTO buildStarWarsListDTO() {
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        PolymorphicTypeValidator ptv = BasicPolymorphicTypeValidator.builder()
-//                .allowIfSubType("com.")
-//                .allowIfSubType("java.util.ArrayList")
-//                .build();
-//        objectMapper.activateDefaultTyping(ptv, ObjectMapper.DefaultTyping.NON_FINAL);
-
         ObjectMapper objectMapper = new ObjectMapper();
-
         try {
             return objectMapper.readValue(ConnectionManager.getHttpResponse().body(), DTOFactory.setDTOListObject().getClass());
         } catch (JsonProcessingException e) {

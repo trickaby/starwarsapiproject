@@ -1,11 +1,15 @@
 package com.sparta.timin.framework;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.simple.JSONObject;
+import com.google.gson.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 
 public class ConnectionManager {
     private static final String BASEURL = "https://swapi.dev/api/";
@@ -20,12 +24,13 @@ public class ConnectionManager {
 
     public static void buildHttpRequest() {
         setHttpRequest(HttpRequest.newBuilder().uri(URI.create(ConnectionManager.getURL())).build());
-        System.out.println("Request: " + getHttpRequest().toString());
+        System.out.println("Request: " + getHttpRequest().toString() + " " + getStatusCode());
     }
 
     public static void sendRequest() throws IOException, InterruptedException {
         setHttpResponse(ConnectionManager.getHttpClient().send(httpRequest, HttpResponse.BodyHandlers.ofString()));
-        System.out.println("Response: " + getHttpResponse().body());
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        System.out.println("Response: " + gson.toJson(JsonParser.parseString(httpResponse.body())));
     }
 
     public static void setURL(String URL) {

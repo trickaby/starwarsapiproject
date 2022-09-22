@@ -9,7 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class StarWarsListDTOTest {
 
@@ -20,15 +19,18 @@ public class StarWarsListDTOTest {
     static StarshipListDTO starshipListDTO;
     static VehicleListDTO vehicleListDTO;
 
+//    TODO - Handle missing IDs in the API - eg no starships/1/
+
+
     @BeforeAll
     @DisplayName("Setup")
     static void setup() {
-        filmListDTO = (FilmListDTO) Injector.injectStarWarsListDTO(Endpoints.FILM.getEndpoint());
-        personListDTO = (PersonListDTO) Injector.injectStarWarsListDTO(Endpoints.PERSON.getEndpoint());
-        planetListDTO = (PlanetListDTO) Injector.injectStarWarsListDTO(Endpoints.PLANET.getEndpoint());
-        speciesListDTO = (SpeciesListDTO) Injector.injectStarWarsListDTO(Endpoints.SPECIES.getEndpoint());
-        starshipListDTO = (StarshipListDTO) Injector.injectStarWarsListDTO(Endpoints.STARSHIP.getEndpoint());
-        vehicleListDTO = (VehicleListDTO) Injector.injectStarWarsListDTO(Endpoints.VEHICLE.getEndpoint());
+        filmListDTO = (FilmListDTO) Injector.injectStarWarsListDTO(Endpoints.FILM);
+        personListDTO = (PersonListDTO) Injector.injectStarWarsListDTO(Endpoints.PERSON);
+        planetListDTO = (PlanetListDTO) Injector.injectStarWarsListDTO(Endpoints.PLANET);
+        speciesListDTO = (SpeciesListDTO) Injector.injectStarWarsListDTO(Endpoints.SPECIES);
+        starshipListDTO = (StarshipListDTO) Injector.injectStarWarsListDTO(Endpoints.STARSHIP);
+        vehicleListDTO = (VehicleListDTO) Injector.injectStarWarsListDTO(Endpoints.VEHICLE);
     }
 
     @Test
@@ -60,6 +62,16 @@ public class StarWarsListDTOTest {
     @Test
     void previousFromFirstPage() {
         System.out.println(personListDTO.getPrevious());
+    }
+
+    @Test
+    void checkEachDTO() {
+        assertEquals(6, filmListDTO.getCount());
+        assertEquals(82, personListDTO.getCount());
+        assertEquals(60, planetListDTO.getCount());
+        assertEquals(37, speciesListDTO.getCount());
+        assertEquals(36, starshipListDTO.getCount());
+        assertEquals(39, vehicleListDTO.getCount());
     }
 
 }
