@@ -1,7 +1,5 @@
-package com.sparta.timin.framework;
+package com.sparta.timin.framework.util;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.simple.JSONObject;
 import com.google.gson.*;
 import java.io.IOException;
 import java.net.URI;
@@ -9,7 +7,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Map;
 
 public class ConnectionManager {
     private static final String BASEURL = "https://swapi.dev/api/";

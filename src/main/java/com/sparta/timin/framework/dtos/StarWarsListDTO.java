@@ -1,10 +1,7 @@
 package com.sparta.timin.framework.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sparta.timin.framework.Injector;
-import com.sparta.timin.framework.NoPageException;
-
-import java.util.List;
+import com.sparta.timin.framework.util.NoPageException;
 
 public abstract class StarWarsListDTO {
 

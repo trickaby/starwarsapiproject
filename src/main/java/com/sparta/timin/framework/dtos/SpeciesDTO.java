@@ -1,7 +1,6 @@
 package com.sparta.timin.framework.dtos;
 
 import com.fasterxml.jackson.annotation.*;
-import com.sparta.timin.framework.Injector;
 
 import java.util.HashMap;
 import java.util.Map;

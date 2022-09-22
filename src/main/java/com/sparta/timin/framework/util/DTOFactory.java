@@ -1,6 +1,7 @@
-package com.sparta.timin.framework;
+package com.sparta.timin.framework.util;
 
 import com.sparta.timin.framework.dtos.*;
+import com.sparta.timin.framework.util.ConnectionManager;
 
 public class DTOFactory {
 

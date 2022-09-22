@@ -1,8 +1,6 @@
 package com.sparta.timin.framework.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.sparta.timin.framework.ConnectionManager;
 
 import java.util.List;
 

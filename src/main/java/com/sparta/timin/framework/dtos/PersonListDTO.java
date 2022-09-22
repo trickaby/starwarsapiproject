@@ -1,8 +1,8 @@
 package com.sparta.timin.framework.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sparta.timin.framework.Injector;
-import com.sparta.timin.framework.NoPageException;
+import com.sparta.timin.framework.util.Injector;
+import com.sparta.timin.framework.util.NoPageException;
 
 import java.util.List;
 

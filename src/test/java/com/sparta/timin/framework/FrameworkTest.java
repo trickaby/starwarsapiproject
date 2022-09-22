@@ -1,6 +1,9 @@
 package com.sparta.timin.framework;
 
 import com.sparta.timin.framework.dtos.*;
+import com.sparta.timin.framework.util.ConnectionManager;
+import com.sparta.timin.framework.util.Endpoints;
+import com.sparta.timin.framework.util.Injector;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;

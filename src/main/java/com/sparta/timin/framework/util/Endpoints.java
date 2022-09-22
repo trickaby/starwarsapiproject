@@ -1,4 +1,4 @@
-package com.sparta.timin.framework;
+package com.sparta.timin.framework.util;
 
 public enum Endpoints {
 
