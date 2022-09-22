@@ -11,12 +11,8 @@ import java.net.http.HttpResponse;
 public class ConnectionManager {
     private static final String BASEURL = "https://swapi.dev/api/";
     private static String endPoint;
-
-    private static String URL;
-
     private static HttpResponse<String> httpResponse = null;
     private static HttpClient httpClient = HttpClient.newHttpClient();
-
     private static HttpRequest httpRequest;
 
     public static void buildHttpRequest() {
@@ -30,22 +26,12 @@ public class ConnectionManager {
         System.out.println("Response: " + gson.toJson(JsonParser.parseString(httpResponse.body())));
     }
 
-    public static void setURL(String URL) {
-        ConnectionManager.URL = URL;
-    }
-
-
     public static HttpResponse<String> getHttpResponse() {
         return httpResponse;
     }
 
     public static void setHttpResponse(HttpResponse<String> httpResponse) {
         ConnectionManager.httpResponse = httpResponse;
-    }
-
-
-    public static String getConnection() {
-        return BASEURL;
     }
 
     public static HttpClient getHttpClient() {
