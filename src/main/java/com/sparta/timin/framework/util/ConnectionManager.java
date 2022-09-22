@@ -80,11 +80,6 @@ public class ConnectionManager {
     }
 
     public static HttpHeaders getHeaders() {
-        try {
-            httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
         return httpResponse.headers();
     }
 
